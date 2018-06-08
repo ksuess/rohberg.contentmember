@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<object name="portal_workflow">
+    <object name="zhkathauthor_dexterity_membrane_workflow" meta_type="Workflow"/>
+  <bindings>
+    <type type_id="zhkathauthor">
+      <bound-workflow workflow_id="zhkathauthor_dexterity_membrane_workflow" />
+    </type>
+  </bindings>
+</object>
