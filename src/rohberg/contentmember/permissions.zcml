@@ -6,6 +6,12 @@
   <configure zcml:condition="installed AccessControl.security">
   <!-- -*- extra stuff goes here -*- -->
 
+    <permission
+        id="rohberg.contentmember.AddZhkathauthor"
+        title="rohberg.contentmember: Add Zhkathauthor"
+    />
+
+        
 
   </configure>
 
