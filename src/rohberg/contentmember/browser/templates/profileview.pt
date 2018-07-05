@@ -14,15 +14,16 @@
                             here_url context/@@plone_context_state/object_url;">
 
     <div class="discreet small">
-        <span tal:content="context/companyposition |nothing" />
+        <span tal:replace="context/companyposition |nothing" />
     </div>
-  
+    <div tal:content="structure context/bio/output|context/bio|nothing">Bio</div>
+
     <!-- <div id="parent-fieldname-text"
       tal:condition="context/text"
       tal:content="structure python:context.text.output_relative_to(view.context)"
       tal:attributes="class python: toc and 'pat-autotoc' or ''" />
     -->
-        
+
         <!-- listing of content created by this user -->
         <tal:authorContent
             define="author_content view/author_content;
@@ -69,7 +70,7 @@
             </p>
 
         </tal:authorContent>
-        
+
 </metal:content-core>
 </metal:content-core>
 

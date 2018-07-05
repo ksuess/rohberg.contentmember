@@ -20,10 +20,10 @@ class ProfileView(DefaultView):
             sort_order='reverse'
         )
 
-        print("author_content for {}".format(self.context.UID()))
+        # print("author_content for {}".format(self.context.UID()))
 
         for brain in brains[:10]:
-            print("brain.id {}".format(brain.id))
+            # print("brain.id {}".format(brain.id))
             results.append({
                 'title': brain.Title,
                 'date': plone_view.toLocalizedTime(
