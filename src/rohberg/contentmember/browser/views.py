@@ -8,6 +8,7 @@ class ProfileView(DefaultView):
     """
     # @property
     def author_content(self):
+        """Zeige Content der vom Autor erstellt wurde."""
         results = []
 
         plone_view = self.context.restrictedTraverse(

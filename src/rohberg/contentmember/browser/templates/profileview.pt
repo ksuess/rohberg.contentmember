@@ -14,9 +14,12 @@
                             here_url context/@@plone_context_state/object_url;">
 
     <div class="discreet small">
-        <span tal:replace="context/companyposition |nothing" />
+        <span tal:replace="context/companyposition|nothing" />
     </div>
     <div tal:content="structure context/bio/output|context/bio|nothing">Bio</div>
+    <div>
+        <span tal:replace="context/telnr|nothing" />
+    </div>
 
     <!-- <div id="parent-fieldname-text"
       tal:condition="context/text"
@@ -24,52 +27,52 @@
       tal:attributes="class python: toc and 'pat-autotoc' or ''" />
     -->
 
-        <!-- listing of content created by this user -->
-        <tal:authorContent
-            define="author_content view/author_content;
-                creator context/UID;"
-            condition="author_content">
+    <!-- listing of content created by this user -->
+    <tal:authorContent
+        define="author_content view/author_content;
+            creator context/UID;"
+        condition="author_content">
 
-            <h2 i18n:translate="heading_author_content">
-                Latest content created by this user
-            </h2>
+        <h2 i18n:translate="heading_author_content">
+            Latest content created by this user
+        </h2>
 
-            <div metal:define-macro="user_content_listing">
-            <table class="vertical listing"
-                   summary="Lists content written by an author grouped by content type"
-                   i18n:attributes="summary summary_author_content_list;">
-                <thead>
-                  <tr>
-                      <th i18n:translate="">Date</th>
-                      <th i18n:translate="">Content</th>
-                  </tr>
-                </thead>
-                <tal:repeat repeat="item author_content">
-                    <tr>
-                        <th tal:content="item/date"
-                            style="white-space: nowrap">
-                            Date
-                        </th>
-                        <td>
-                          <a href=""
-                             tal:attributes="href item/url"
-                             tal:content="item/title">title</a>
-                        </td>
-                    </tr>
-                </tal:repeat>
-            </table>
-            </div>
+        <div metal:define-macro="user_content_listing">
+        <table class="vertical listing"
+               summary="Lists content written by an author grouped by content type"
+               i18n:attributes="summary summary_author_content_list;">
+            <thead>
+              <tr>
+                  <th i18n:translate="">Date</th>
+                  <th i18n:translate="">Content</th>
+              </tr>
+            </thead>
+            <tal:repeat repeat="item author_content">
+                <tr>
+                    <th tal:content="item/date"
+                        style="white-space: nowrap">
+                        Date
+                    </th>
+                    <td>
+                      <a href=""
+                         tal:attributes="href item/url"
+                         tal:content="item/title">title</a>
+                    </td>
+                </tr>
+            </tal:repeat>
+        </table>
+        </div>
 
-            <p>
-            <a href=""
-               tal:attributes="href string:$portal_url/search?Creator=${creator}&amp;sort_on=created&amp;sort_order=reverse"
-               i18n:translate="go_to_search_author_content">
-                All content created by
-                <span i18n:name="user" tal:omit-tag="" tal:content="context/title"/>&hellip;
-            </a>
-            </p>
+        <p>
+        <a href=""
+           tal:attributes="href string:$portal_url/search?Creator=${creator}&amp;sort_on=created&amp;sort_order=reverse"
+           i18n:translate="go_to_search_author_content">
+            All content created by
+            <span i18n:name="user" tal:omit-tag="" tal:content="context/title"/>&hellip;
+        </a>
+        </p>
 
-        </tal:authorContent>
+    </tal:authorContent>
 
 </metal:content-core>
 </metal:content-core>
