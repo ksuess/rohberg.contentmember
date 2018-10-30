@@ -28,7 +28,7 @@ class IZhkathauthor(IMember):
     )
     companyposition = schema.TextLine(
         title=_(u'label_companyposition', default=u'Position'),
-        description=_(u'help_companyposition', default=u''),
+        description=_(u'help_companyposition', default=u'Funktion innerhalb seiner oder ihrer Organisation / Firma'),
         required=False
     )
     telnr = schema.TextLine(
