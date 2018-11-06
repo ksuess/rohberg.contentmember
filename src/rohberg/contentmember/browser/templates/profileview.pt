@@ -7,6 +7,12 @@
     i18n:domain="plone">
 <body>
 
+    <metal:custom_title fill-slot="content-title">
+      <div class="documentFirstHeading" >
+          <span tal:content="context/Title|nothing">Urs Meier</span><tal:companyposition tal:condition="context/companyposition|nothing">, <span tal:content="context/companyposition">Kommunikationsbeauftragter</span></tal:companyposition>
+    </div>
+    </metal:custom_title>
+
 <metal:content-core fill-slot="content-core">
 <metal:content-core define-macro="content-core"
                     tal:define="toc context/table_of_contents|nothing;
@@ -16,6 +22,7 @@
     <div class="discreet small">
         <span tal:replace="context/companyposition|nothing" />
     </div>
+    <!-- TODO: Kontaktdaten: E-Mail, TelNr -->
     <div tal:content="structure context/bio/output|context/bio|nothing">Bio</div>
     <div>
         <span tal:replace="context/telnr|nothing" />
