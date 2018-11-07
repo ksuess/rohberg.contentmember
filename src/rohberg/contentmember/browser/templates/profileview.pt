@@ -8,8 +8,9 @@
 <body>
 
     <metal:custom_title fill-slot="content-title">
-      <div class="documentFirstHeading" >
-          <span tal:content="context/Title|nothing">Urs Meier</span><tal:companyposition tal:condition="context/companyposition|nothing">, <span tal:content="context/companyposition">Kommunikationsbeauftragter</span></tal:companyposition>
+      <div class="documentFirstHeading"
+            tal:define="companyposition context/companyposition|nothing">
+          <span tal:content="context/Title|nothing">Urs Meier</span><tal:companyposition tal:condition="companyposition">, <span tal:content="companyposition">Kommunikationsbeauftragter</span></tal:companyposition>
     </div>
     </metal:custom_title>
 
@@ -19,14 +20,42 @@
                             portal_url context/@@plone_portal_state/portal_url;
                             here_url context/@@plone_context_state/object_url;">
 
-    <div class="discreet small">
+    <div class="companyposition discreet small">
         <span tal:replace="context/companyposition|nothing" />
     </div>
     <!-- TODO: Kontaktdaten: E-Mail, TelNr -->
-    <div tal:content="structure context/bio/output|context/bio|nothing">Bio</div>
-    <div>
-        <span tal:replace="context/telnr|nothing" />
+    <div class="contactdata"
+        tal:define="
+        telnr context/telnr|nothing;
+        email context/email|nothing;
+        website context/website|nothing;
+        twitter context/twitter_url|nothing;
+        ">
+        <ul>
+        <li tal:condition="telnr">
+                <span class="label telnr">Telefon</span> <span tal:content="telnr"></span>
+            </li>
+            <li tal:condition="email">
+                <span class="label email">Email</span> <a
+                        tal:attributes="href string:mailto:$email"
+                        tal:content="email"></a>
+            </li>
+            <li tal:condition="website">
+                <span class="label website">Website</span> <a
+                        tal:attributes="href website"
+                        tal:content="python:website.replace('https://','')"></a>
+            </li>
+            <li tal:condition="twitter">
+                <span class="label twitter">Twitter</span> <a
+                        tal:attributes="href twitter"
+                        tal:content="python:twitter.replace('https://','')"></a>
+            </li>
+        </ul>
     </div>
+
+    <div class="bio"
+        tal:content="structure context/bio/output|context/bio|nothing">Bio</div>
+
 
     <!-- <div id="parent-fieldname-text"
       tal:condition="context/text"
