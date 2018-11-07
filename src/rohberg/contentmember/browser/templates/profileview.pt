@@ -8,9 +8,8 @@
 <body>
 
     <metal:custom_title fill-slot="content-title">
-      <div class="documentFirstHeading"
-            tal:define="companyposition context/companyposition|nothing">
-          <span tal:content="context/Title|nothing">Urs Meier</span><tal:companyposition tal:condition="companyposition">, <span tal:content="companyposition">Kommunikationsbeauftragter</span></tal:companyposition>
+      <div class="documentFirstHeading">
+          <span tal:content="context/Title|nothing">Urs Meier</span>
     </div>
     </metal:custom_title>
 
