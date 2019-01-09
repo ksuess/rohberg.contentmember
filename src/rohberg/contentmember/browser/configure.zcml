@@ -24,9 +24,9 @@
       name="profileview"
       template="templates/profileview.pt"
       for="rohberg.contentmember.content.IZhkathauthor"
-      layer="rohberg.zhkath.interfaces.IRohbergZhkathLayer"
+      layer="rohberg.contentmember.interfaces.IRohbergContentmemberLayer"
       permission="zope2.View"
       class=".views.ProfileView"
       />
-      
+
 </configure>
