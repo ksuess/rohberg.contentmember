@@ -48,6 +48,7 @@ setup(
         'Products.membrane',
         'dexterity.membrane',
         'collective.address',
+        'collective.dexteritytextindexer',
     ],
     extras_require={
         'test': [
