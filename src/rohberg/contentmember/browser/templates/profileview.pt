@@ -97,14 +97,6 @@
         </table>
         </div>
 
-        <p>
-        <a href=""
-           tal:attributes="href string:$portal_url/search?Creator=${creator}&amp;sort_on=created&amp;sort_order=reverse"
-           i18n:translate="go_to_search_author_content">
-            All content created by
-            <span i18n:name="user" tal:omit-tag="" tal:content="context/title"/>&hellip;
-        </a>
-        </p>
 
     </tal:authorContent>
 
