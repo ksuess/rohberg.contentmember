@@ -22,7 +22,6 @@
     <div class="companyposition discreet small">
         <span tal:replace="context/companyposition|nothing" />
     </div>
-    <!-- TODO: Kontaktdaten: E-Mail, TelNr -->
     <div class="contactdata"
         tal:define="
         telnr context/telnr|nothing;
@@ -55,12 +54,12 @@
     <div class="bio"
         tal:content="structure context/bio/output|context/bio|nothing">Bio</div>
 
-
-    <!-- <div id="parent-fieldname-text"
-      tal:condition="context/text"
-      tal:content="structure python:context.text.output_relative_to(view.context)"
-      tal:attributes="class python: toc and 'pat-autotoc' or ''" />
-    -->
+    <tal:comment tal:replace="nothing">
+        <div id="parent-fieldname-text"
+          tal:condition="context/text"
+          tal:content="structure python:context.text.output_relative_to(view.context)"
+          tal:attributes="class python: toc and 'pat-autotoc' or ''" />
+    </tal:comment>
 
     <!-- listing of content created by this user -->
     <tal:authorContent

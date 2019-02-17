@@ -18,7 +18,8 @@ class ProfileView(DefaultView):
         brains = api.portal.get_tool("portal_catalog").searchResults(
             Creator=self.context.UID(),
             sort_on='created',
-            sort_order='reverse'
+            sort_order='reverse',
+            portal_type=['zhkathpage', 'zhkathcollection']
         )
 
         # print("author_content for {}".format(self.context.UID()))
