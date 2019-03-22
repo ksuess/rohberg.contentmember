@@ -25,18 +25,29 @@
     <div class="contactdata"
         tal:define="
         telnr context/telnr|nothing;
-        email context/email|nothing;
         website context/website|nothing;
         twitter context/twitter_url|nothing;
+        item_email context/email|nothing;
+        mail python:item_email.split('@');
+        emaillocalpart python:mail[0];
+        emaildomainpart python:mail[1];
         ">
         <ul>
         <li tal:condition="telnr">
                 <span class="label telnr">Telefon</span> <span tal:content="telnr"></span>
             </li>
-            <li tal:condition="email">
-                <span class="label email">Email</span> <a
-                        tal:attributes="href string:mailto:$email"
-                        tal:content="email"></a>
+            <li tal:condition="mail">
+                <span class="label email">Email</span> <a href="#" class="nohyphens"
+                            tal:attributes="href emaillocalpart;
+                                data-emaildomainpart emaildomainpart"
+                            tal:content="emaillocalpart">
+                           Item Title
+                         </a><a href="#" class="nohyphens"
+                              tal:attributes="href emaillocalpart;
+                                  data-emaildomainpart emaildomainpart"
+                              tal:content="string:@$emaildomainpart">
+                             Item Title
+                         </a>
             </li>
             <li tal:condition="website">
                 <span class="label website">Website</span> <a
