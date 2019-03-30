@@ -14,7 +14,7 @@
     </metal:custom_title>
 
 <metal:content-core fill-slot="content-core">
-<metal:content-core define-macro="content-core"
+<metal:cc define-macro="content-core"
                     tal:define="toc context/table_of_contents|nothing;
                             portal_url context/@@plone_portal_state/portal_url;
                             here_url context/@@plone_context_state/object_url;">
@@ -72,46 +72,43 @@
           tal:attributes="class python: toc and 'pat-autotoc' or ''" />
     </tal:comment>
 
-    <!-- listing of content created by this user -->
-    <tal:authorContent
-        define="author_content view/author_content;
-            creator context/UID;"
-        condition="author_content">
+    <tal:comment tal:replace="nothing">
+        <tal:authorContent
+            define="author_content view/author_content;
+                creator context/UID;"
+            condition="author_content">
 
-        <!-- <h2 i18n:translate="heading_author_content">
-            Latest content created by this user
-        </h2> -->
+            <div metal:define-macro="user_content_listing">
+            <table class="vertical listing"
+                   summary="Lists content written by an author grouped by content type"
+                   i18n:attributes="summary summary_author_content_list;">
+                <thead>
+                  <tr>
+                      <th i18n:translate="">Date</th>
+                      <th i18n:translate="">Content</th>
+                  </tr>
+                </thead>
+                <tal:repeat repeat="item author_content">
+                    <tr>
+                        <td tal:content="item/date"
+                            style="white-space: nowrap">
+                            Date
+                        </td>
+                        <td>
+                          <a href=""
+                             tal:attributes="href item/url"
+                             tal:content="item/title">title</a>
+                        </td>
+                    </tr>
+                </tal:repeat>
+            </table>
+            </div>
 
-        <div metal:define-macro="user_content_listing">
-        <table class="vertical listing"
-               summary="Lists content written by an author grouped by content type"
-               i18n:attributes="summary summary_author_content_list;">
-            <thead>
-              <tr>
-                  <th i18n:translate="">Date</th>
-                  <th i18n:translate="">Content</th>
-              </tr>
-            </thead>
-            <tal:repeat repeat="item author_content">
-                <tr>
-                    <th tal:content="item/date"
-                        style="white-space: nowrap">
-                        Date
-                    </th>
-                    <td>
-                      <a href=""
-                         tal:attributes="href item/url"
-                         tal:content="item/title">title</a>
-                    </td>
-                </tr>
-            </tal:repeat>
-        </table>
-        </div>
+        </tal:authorContent>
+    </tal:comment>
 
 
-    </tal:authorContent>
-
-</metal:content-core>
+</metal:cc>
 </metal:content-core>
 
 </body>
