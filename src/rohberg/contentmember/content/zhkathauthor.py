@@ -31,8 +31,22 @@ class IZhkathauthor(IMember):
         description=_(u'help_companyposition', default=u'Funktion innerhalb seiner oder ihrer Organisation / Firma'),
         required=False
     )
+
     telnr = schema.TextLine(
         title=_(u'label_telnr', default=u'Telefon'),
+        required=False
+    )
+    telnr_label = schema.TextLine(
+        title=_(u'label_telnr_label', default=u'Label Telefon'),
+        required=False
+    )
+
+    telnr2 = schema.TextLine(
+        title=_(u'label_telnr2', default=u'Telefon #2'),
+        required=False
+    )
+    telnr2_label = schema.TextLine(
+        title=_(u'label_telnr2_label', default=u'Label Telefon #2'),
         required=False
     )
 

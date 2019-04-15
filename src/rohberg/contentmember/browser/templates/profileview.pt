@@ -25,6 +25,9 @@
     <div class="contactdata"
         tal:define="
         telnr context/telnr|nothing;
+        telnr_label context/telnr_label|nothing;
+        telnr2 context/telnr2|nothing;
+        telnr2_label context/telnr2_label|nothing;
         website context/website|nothing;
         twitter context/twitter_url|nothing;
         item_email context/email|nothing;
@@ -33,8 +36,10 @@
         emaildomainpart python:mail[1];
         ">
         <ul>
-        <li tal:condition="telnr">
-                <span class="label telnr">Telefon</span> <span tal:content="telnr"></span>
+            <li tal:condition="telnr">
+                <span class="label telnr" tal:content="python:telnr_label or 'Telefon'">Telefon</span> <span tal:content="telnr"></span>
+            </li>
+            <li tal:condition="telnr2"><span class="label telnr" tal:content="python:telnr2_label or 'Telefon'">Telefon</span> <span tal:content="telnr2"></span>
             </li>
             <li tal:condition="mail">
                 <span class="label email">Email</span> <a href="#" class="nohyphens"
