@@ -43,6 +43,11 @@ class IZhkathauthor(IMember):
         required=True,
         )
 
+    show_email = schema.Bool(
+        title=_(u"show_email", default=u"Zeige Email in Kontaktkarte"),
+        default=True
+    )
+
 
 IZhkathauthor['homepage'].title = u"TODO: hide this field homepage"
 
