@@ -10,7 +10,7 @@
       name="title">Autor</property>
   <property
       i18n:translate=""
-      name="description">dexterity.membrane member</property>
+      name="description">Author and contact persons</property>
 
   <property name="allow_discussion">False</property>
   <property name="factory">zhkathauthor</property>
@@ -46,11 +46,8 @@
           <element value="plone.app.dexterity.behaviors.metadata.IOwnership" /> -->
       <!--element value="plone.app.content.interfaces.INameFromTitle" /-->
 
-      <element value="dexterity.membrane.behavior.user.IMembraneUser" />
-      <element value="dexterity.membrane.behavior.user.INameFromFullName" />
-      <element value="dexterity.membrane.behavior.password.IProvidePasswords" />
       <element value="collective.dexteritytextindexer.behavior.IDexterityTextIndexer" />
-      <element value="plone.app.relationfield.behavior.IRelatedItems"/>
+      <!-- <element value="plone.app.relationfield.behavior.IRelatedItems"/> -->
       <!-- <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" /> -->
       <element value="plone.app.contenttypes.behaviors.leadimage.ILeadImage"/>
       <element value="collective.address.behaviors.ISocial"/>
