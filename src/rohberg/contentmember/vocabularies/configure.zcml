@@ -7,4 +7,10 @@
     name="plone.app.vocabularies.Authortype"
     />
 
+    <utility
+        name="rohberg.contentmember.authors_vocabulary"
+        provides="zope.schema.interfaces.IVocabularyFactory"
+        component=".vocabularies.authorsVocabulary"
+        />
+
 </configure>

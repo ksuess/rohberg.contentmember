@@ -91,7 +91,7 @@
                 <thead>
                   <tr>
                       <th i18n:translate="">Date</th>
-                      <th i18n:translate="">Content</th>
+                      <th i18n:translate="">Title</th>
                   </tr>
                 </thead>
                 <tal:repeat repeat="item author_content">

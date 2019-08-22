@@ -16,14 +16,12 @@ class ProfileView(DefaultView):
         )
 
         brains = api.portal.get_tool("portal_catalog").searchResults(
-            Creator=self.context.UID(),
+            author=self.context.id,
             sort_on='effective',
             sort_order='reverse',
             portal_type=['zhkathpage',],
             pagetype = ["Beitrag", "Meinung"]
         )
-
-        # print("author_content for {}".format(self.context.UID()))
 
         for brain in brains[:10]:
             # print("brain.id {}".format(brain.id))
