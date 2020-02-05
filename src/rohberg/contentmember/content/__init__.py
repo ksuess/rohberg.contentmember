@@ -1,2 +1,2 @@
 # coding: utf-8
-from zhkathauthor import IZhkathauthor
+from rohberg.contentmember.content.zhkathauthor import IZhkathauthor
