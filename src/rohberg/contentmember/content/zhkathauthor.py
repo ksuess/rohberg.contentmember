@@ -63,7 +63,7 @@ class IZhkathauthor(IMember):
     )
 
 
-IZhkathauthor['homepage'].title = u"TODO: hide this field homepage"
+IZhkathauthor['homepage'].title = u"homepage"
 
 
 @implementer(IZhkathauthor)
