@@ -7,4 +7,9 @@
   </index>
   <column value="authortype"/>
 
+  <index name="authors" meta_type="KeywordIndex">
+    <indexed_attr value="listCreators"/>
+  </index>
+  <!-- no metadata -->
+
 </object>

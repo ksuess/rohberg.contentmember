@@ -71,47 +71,77 @@
     <div class="bio"
         tal:content="structure context/bio/output|context/bio|nothing">Bio</div>
 
-    <tal:comment tal:replace="nothing">
-        <div id="parent-fieldname-text"
-          tal:condition="context/text"
-          tal:content="structure python:context.text.output_relative_to(view.context)"
-          tal:attributes="class python: toc and 'pat-autotoc' or ''" />
-    </tal:comment>
+    <tal:authorContent
+        define="author_content view/author_content;
+            creator context/UID;"
+        condition="python: author_content[1]>0">
 
-    <tal:comment tal:replace="nothing">
-        <tal:authorContent
-            define="author_content view/author_content;
-                creator context/UID;"
-            condition="author_content">
+        <style>
+            .user_content_listing {
+                display: flex;
+                flex-wrap: wrap;
+                margin-top: 5rem;
+            }
+            .meinung {
+                display: grid;
+                width: 240px;
+                margin: 0 1rem 2.5rem 0;
+                grid-template-rows: 180px 70px auto;
+            }
+            .meinung > * {
+                grid-column: 1;
+                -ms-grid-column: 1;
+                // max-width: 180px;
+            }
+            .meinung .image {
+                grid-row: 1;
+                -ms-grid-row: 1;
+            }
+            .meinung .image img {
+                width: 100%;
+            }
+            .meinung .label {
+                grid-row: 2;
+                -ms-grid-row: 2;
+                font-size: 15px;
+                font-weight: 700;
+                color: #767676;
+                margin: 1em 0 .5em 0;
+            }
+            .meinung .title {
+                grid-row: 3;
+                -ms-grid-row: 3;
+                font-size: 21px;
+                font-weight: bold;
+                color: #191919;
+                line-height: 1.3;
+                margin-top: 0;
+                margin-bottom: 7px;
+            }
+        </style>
+        <div class="user_content_listing" metal:define-macro="user_content_listing">
+            <tal:meinung
+                repeat="item python: author_content[0]">
+                <a 
+                    class="meinung"
+                    tal:attributes="href item/url">
+                    <div class="image">
+                        <img alt="" class="js-lazy-image"
+                            src="++plone++rohberg.zhkath/placeholder_4_3.png"
+                            tal:attributes="data-src string:${item/url}/@@images/image/small" />
+                    </div>
+                    <div class="label" tal:content="item/label|nothing">label</div>
+                    <div class="title" tal:content="item/title|nothing">title</div>
+                </a>
+            </tal:meinung>
+        </div>
 
-            <div metal:define-macro="user_content_listing">
-            <table class="vertical listing"
-                   summary="Lists content written by an author grouped by content type"
-                   i18n:attributes="summary summary_author_content_list;">
-                <thead>
-                  <tr>
-                      <th i18n:translate="">Date</th>
-                      <th i18n:translate="">Content</th>
-                  </tr>
-                </thead>
-                <tal:repeat repeat="item author_content">
-                    <tr>
-                        <td tal:content="item/date"
-                            style="white-space: nowrap">
-                            Date
-                        </td>
-                        <td>
-                          <a href=""
-                             tal:attributes="href item/url"
-                             tal:content="item/title">title</a>
-                        </td>
-                    </tr>
-                </tal:repeat>
-            </table>
-            </div>
+        <p class="archivelinkparagraph">
+            <a href="#" tal:attributes="href string:$portal_url/archivsuche?collectionfilter=1&pagetype=Meinung&Creator=${context/UID}"
+                tal:condition="python:author_content[1]>10">mehr</a>
+        </p>
+    </tal:authorContent>
 
-        </tal:authorContent>
-    </tal:comment>
 
 
 </metal:cc>
