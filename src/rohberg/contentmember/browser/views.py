@@ -26,7 +26,10 @@ class ProfileView(DefaultView):
     """
     # @property
     def author_content(self):
-        """Zeige Content der vom Autor erstellt wurde."""
+        """Zeige Content der vom Autor erstellt wurde.
+        
+        returns tuple: items and number of items
+        """
         results = []
 
         plone_view = self.context.restrictedTraverse(
