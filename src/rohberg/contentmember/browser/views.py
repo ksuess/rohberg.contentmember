@@ -46,7 +46,7 @@ class ProfileView(DefaultView):
 
         # print("** author_content for {} UID: {} count: {}".format(self.context.title, self.context.UID(), len(brains)))
 
-        for brain in brains[:10]:
+        for brain in brains[:12]:
             data = {
                 'title': brain.Title,
                 'date': plone_view.toLocalizedTime(

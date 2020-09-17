@@ -80,7 +80,7 @@
             .user_content_listing {
                 display: flex;
                 flex-wrap: wrap;
-                margin-top: 5rem;
+                margin-top: 8rem;
             }
             .meinung {
                 display: grid;
@@ -96,9 +96,11 @@
             .meinung .image {
                 grid-row: 1;
                 -ms-grid-row: 1;
+                vertical-align: middle;
+                overflow: hidden;
             }
             .meinung .image img {
-                width: 100%;
+                height: 100%;
             }
             .meinung .label {
                 grid-row: 2;
