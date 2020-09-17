@@ -71,8 +71,6 @@
     <div class="bio"
         tal:content="structure context/bio/output|context/bio|nothing">Bio</div>
 
-
-    <tal:comment tal:replace="nothing">
     <tal:authorContent
         define="author_content view/author_content;
             creator context/UID;"
@@ -143,7 +141,7 @@
                 tal:condition="python:author_content[1]>10">mehr</a>
         </p>
     </tal:authorContent>
-    </tal:comment>
+
 
 
 </metal:cc>
