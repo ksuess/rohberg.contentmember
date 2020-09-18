@@ -86,7 +86,7 @@
                 display: grid;
                 width: 240px;
                 margin: 0 1rem 2.5rem 0;
-                grid-template-rows: 180px 70px auto;
+                grid-template-rows: 180px auto;
             }
             .meinung > * {
                 grid-column: 1;
@@ -117,7 +117,7 @@
                 font-weight: bold;
                 color: #191919;
                 line-height: 1.3;
-                margin-top: 0;
+                margin-top: 7px;
                 margin-bottom: 7px;
             }
         </style>
@@ -132,7 +132,6 @@
                             src="++plone++rohberg.zhkath/placeholder_4_3.png"
                             tal:attributes="data-src string:${item/url}/@@images/image/small" />
                     </div>
-                    <div class="label" tal:content="item/label|nothing">label</div>
                     <div class="title" tal:content="item/title|nothing">title</div>
                 </a>
             </tal:meinung>
