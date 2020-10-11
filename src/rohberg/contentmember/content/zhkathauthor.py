@@ -62,6 +62,17 @@ class IZhkathauthor(IMember):
         default=True
     )
 
+    show_tagged_news_and_blogposts = schema.List(
+        title=_(u"show_tagged_news_and_blogposts", default=u"Zeige News und Blog-Posts nach Schlagworten"),
+        value_type=schema.Choice(source=u"plone.app.vocabularies.Keywords"),
+        required=False,
+    )
+
+# yourField = schema.List(title=u"Available headers and animations",
+#                                description=u"Headers and animations uploaded here",
+#                                required=False,
+#                                value_type=zope.schema.Choice(source=yourVocabularyFunction),
+#                                )
 
 IZhkathauthor['homepage'].title = u"homepage"
 
