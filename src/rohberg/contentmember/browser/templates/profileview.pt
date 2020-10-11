@@ -15,9 +15,9 @@
 
 <metal:content-core fill-slot="content-core">
 <metal:cc define-macro="content-core"
-                    tal:define="toc context/table_of_contents|nothing;
-                            portal_url context/@@plone_portal_state/portal_url;
-                            here_url context/@@plone_context_state/object_url;">
+    tal:define="toc context/table_of_contents|nothing;
+              portal_url context/@@plone_portal_state/portal_url;
+              here_url context/@@plone_context_state/object_url;">
 
     <div class="companyposition discreet small">
         <span tal:replace="context/companyposition|nothing" />
@@ -71,57 +71,12 @@
     <div class="bio"
         tal:content="structure context/bio/output|context/bio|nothing">Bio</div>
 
-    <tal:authorContent
-        define="author_content view/author_content;
+    <div class="authorContent"
+        tal:define="author_content view/author_content;
             creator context/UID;"
-        condition="python: author_content[1]>0">
-
-        <style>
-            .user_content_listing {
-                display: flex;
-                flex-wrap: wrap;
-                margin-top: 8rem;
-            }
-            .meinung {
-                display: grid;
-                width: 240px;
-                margin: 0 1rem 2.5rem 0;
-                grid-template-rows: 180px auto;
-            }
-            .meinung > * {
-                grid-column: 1;
-                -ms-grid-column: 1;
-                // max-width: 180px;
-            }
-            .meinung .image {
-                grid-row: 1;
-                -ms-grid-row: 1;
-                vertical-align: middle;
-                overflow: hidden;
-            }
-            .meinung .image img {
-                height: 100%;
-            }
-            .meinung .label {
-                grid-row: 2;
-                -ms-grid-row: 2;
-                font-size: 15px;
-                font-weight: 700;
-                color: #767676;
-                margin: 1em 0 .5em 0;
-            }
-            .meinung .title {
-                grid-row: 3;
-                -ms-grid-row: 3;
-                font-size: 21px;
-                font-weight: bold;
-                color: #191919;
-                line-height: 1.3;
-                margin-top: 7px;
-                margin-bottom: 7px;
-            }
-        </style>
-        <div class="user_content_listing" metal:define-macro="user_content_listing">
+        tal:condition="python: author_content[1]>0">
+        <h2>Meine Beiträge</h2>
+        <div class="user_content_listing">
             <tal:meinung
                 repeat="item python: author_content[0]">
                 <a 
@@ -139,12 +94,115 @@
 
         <p class="archivelinkparagraph">
             <a href="#" tal:attributes="href string:$portal_url/archivsuche?collectionfilter=1&pagetype=Meinung&Creator=${context/UID}"
-                tal:condition="python:author_content[1]>10">mehr</a>
+                tal:condition="python:author_content[1]>12">mehr</a>
         </p>
-    </tal:authorContent>
+    </div>
+
+    <div class="subjectsContent"
+        tal:define="
+            items view/getSubjectsContent;
+            categories context/show_tagged_news_and_blogposts;
+            url_quote  nocall:modules/Products.PythonScripts.standard/url_quote;
+            "
+        tal:condition="python: items[1]>0">            
+        <h2>Meine Themen</h2>
+
+        <nav 
+            id="category"
+        >
+            <ul aria-labelledby="categories-filed-under">
+                <li tal:repeat="category categories"
+                    tal:condition="categories">
+                <a href=""
+                    class="link-category"
+                    rel="nofollow"
+                    tal:content="category"
+                    tal:define="quotedCat python:url_quote(category)"
+                    tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/@@search?Subject%3Alist=${quotedCat}">
+                    Category
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="user_subjectscontent_listing">
+            <tal:subjectcontentitem
+                repeat="item python: items[0]">
+                <a 
+                    class="meinung"
+                    tal:attributes="href item/url">
+                    <div class="image">
+                        <img alt="" class="js-lazy-image"
+                            src="++plone++rohberg.zhkath/placeholder_4_3.png"
+                            tal:attributes="data-src string:${item/url}/@@images/image/small" />
+                    </div>
+                    <div class="title" tal:content="item/title|nothing">title</div>
+                </a>
+            </tal:subjectcontentitem>
+        </div>
+
+        <p class="archivelinkparagraph">
+            <a href="#" tal:attributes="href string:$portal_url/archivsuche?collectionfilter=1${view/subjectsquery|nothing}"
+                tal:condition="python:items[1]>12">mehr</a>
+        </p>
+    </div>
 
 
+    <style>
+        nav#category {
+            display: block;
+            border-top: none;
+            margin: 1rem 0 0 0;
+        }
 
+        .authorContent,
+        .subjectsContent {
+            margin-top: 8rem;
+        }
+        .user_content_listing,
+        .user_subjectscontent_listing {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        .meinung {
+            display: grid;
+            width: 240px;
+            margin: 0 1rem 2.5rem 0;
+            grid-template-rows: 180px auto;
+        }
+        .meinung > * {
+            grid-column: 1;
+            -ms-grid-column: 1;
+            // max-width: 180px;
+        }
+        .meinung .image {
+            grid-row: 1;
+            -ms-grid-row: 1;
+            vertical-align: middle;
+            overflow: hidden;
+        }
+        .meinung .image img {
+            height: 100%;
+        }
+        .meinung .label {
+            grid-row: 2;
+            -ms-grid-row: 2;
+            font-size: 15px;
+            font-weight: 700;
+            color: #767676;
+            margin: 1em 0 .5em 0;
+        }
+        .meinung .title {
+            grid-row: 3;
+            -ms-grid-row: 3;
+            font-size: 21px;
+            font-weight: bold;
+            color: #191919;
+            line-height: 1.3;
+            margin-top: 7px;
+            margin-bottom: 7px;
+        }
+    </style>
 </metal:cc>
 </metal:content-core>
 

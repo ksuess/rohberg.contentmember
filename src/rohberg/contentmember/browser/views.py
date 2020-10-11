@@ -24,7 +24,7 @@ def getAuthors(brain):
 class ProfileView(DefaultView):
     """
     """
-    # @property
+    @memoize
     def author_content(self):
         """Zeige Content der vom Autor erstellt wurde.
         
@@ -32,9 +32,9 @@ class ProfileView(DefaultView):
         """
         results = []
 
-        plone_view = self.context.restrictedTraverse(
-            '@@plone'
-        )
+        # plone_view = self.context.restrictedTraverse(
+        #     '@@plone'
+        # )
 
         brains = api.portal.get_tool("portal_catalog").searchResults(
             authors=(self.context.UID(),), # TODO
@@ -49,14 +49,59 @@ class ProfileView(DefaultView):
         for brain in brains[:12]:
             data = {
                 'title': brain.Title,
-                'date': plone_view.toLocalizedTime(
-                    brain.Date
-                ),
+                # 'date': plone_view.toLocalizedTime(
+                #     brain.Date
+                # ),
                 'url': brain.getURL(),
-                'authors': getAuthors(brain),
-                'label': brain.getObject().label,
-                'description': brain.beschreibung_themenseite
+                # 'authors': getAuthors(brain),
+                # 'label': brain.getObject().label,
+                # 'description': brain.beschreibung_themenseite
             }
             results.append(data)
 
         return (results, len(brains))
+
+    @memoize
+    def getSubjectsContent(self):
+        # show_tagged_news_and_blogposts
+        if not getattr(self.context, 'show_tagged_news_and_blogposts', False):
+            print("getSubjectsContent no subjects set.")
+            return ([], 0)
+        
+        results = []
+
+        # plone_view = self.context.restrictedTraverse(
+        #     '@@plone'
+        # )
+        brains = api.portal.get_tool("portal_catalog").searchResults(
+            Subject = getattr(self.context, 'show_tagged_news_and_blogposts', False),
+            sort_on='effective',
+            sort_order='reverse',
+            portal_type=['zhkathpage',],
+            pagetype = ["Beitrag", "Meinung"],
+        )
+        for brain in brains[:12]:
+            data = {
+                'title': brain.Title,
+                # 'subjects': brain.Subject,
+                # 'date': plone_view.toLocalizedTime(
+                #     brain.Date
+                # ),
+                'url': brain.getURL(),
+                # 'authors': getAuthors(brain),
+                # 'label': brain.getObject().label,
+                # 'description': brain.beschreibung_themenseite
+            }
+            results.append(data)
+
+        # print("getSubjectsContent", results, len(brains))
+        return (results, len(brains))
+    def subjectsquery(self):
+        subjects = getattr(self.context, 'show_tagged_news_and_blogposts', False)
+        # print("subjectsquery subjects", subjects)
+        if not subjects:
+            return ''
+        result = ''
+        for subject in subjects:
+            result += '&Subject=' + subject
+        return result
