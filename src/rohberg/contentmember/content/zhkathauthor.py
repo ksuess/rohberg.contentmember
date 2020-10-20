@@ -63,7 +63,7 @@ class IZhkathauthor(IMember):
     )
 
     show_tagged_news_and_blogposts = schema.List(
-        title=_(u"show_tagged_news_and_blogposts", default=u"Zeige News und Blog-Posts nach Schlagworten"),
+        title=_(u"show_tagged_news_and_blogposts", default=u"Zeige News und Blog-Posts nach Schlagwörtern"),
         value_type=schema.Choice(source=u"plone.app.vocabularies.Keywords"),
         required=False,
     )
