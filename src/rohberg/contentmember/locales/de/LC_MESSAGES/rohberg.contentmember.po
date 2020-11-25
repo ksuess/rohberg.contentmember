@@ -1,6 +1,3 @@
-# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
-# SOME DESCRIPTIVE TITLE.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -12,8 +9,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
-"Language-Code: en\n"
-"Language-Name: English\n"
+"Language-Code: de\n"
+"Language-Name: Deutsch\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: rohberg.contentmember\n"
 
@@ -47,42 +44,42 @@ msgstr ""
 
 #: ../content/zhkathauthor.py:26
 msgid "e.g. www.abcjazzz.com"
-msgstr ""
+msgstr "z.B. www.abcjazzz.ch"
 
 #. Default: "Funktion innerhalb seiner oder ihrer Organisation / Firma"
 #: ../content/zhkathauthor.py:31
 msgid "help_companyposition"
-msgstr ""
+msgstr "Funktion innerhalb seiner oder ihrer Organisation / Firma"
 
 #. Default: "Typ"
 #: ../content/zhkathauthor.py:55
 msgid "label_authortype"
-msgstr ""
+msgstr "Typ Autor"
 
 #. Default: "Position"
 #: ../content/zhkathauthor.py:30
 msgid "label_companyposition"
-msgstr ""
+msgstr "Position"
 
 #. Default: "Telefon"
 #: ../content/zhkathauthor.py:36
 msgid "label_telnr"
-msgstr ""
+msgstr "Telefon #1"
 
 #. Default: "Telefon #2"
 #: ../content/zhkathauthor.py:45
 msgid "label_telnr2"
-msgstr ""
+msgstr "Telefon #2"
 
 #. Default: "Label Telefon #2"
 #: ../content/zhkathauthor.py:49
 msgid "label_telnr2_label"
-msgstr ""
+msgstr "Label Telefon #2"
 
 #. Default: "Label Telefon"
 #: ../content/zhkathauthor.py:40
 msgid "label_telnr_label"
-msgstr ""
+msgstr "Label Telefon #1"
 
 #: ../configure.zcml:30
 msgid "rohberg.contentmember"
@@ -95,9 +92,9 @@ msgstr ""
 #. Default: "Zeige Email in Kontaktkarte"
 #: ../content/zhkathauthor.py:61
 msgid "show_email"
-msgstr ""
+msgstr "Zeige Email in Kontaktkarte"
 
 #. Default: "Zeige News und Blog-Posts nach Schlagwörtern"
 #: ../content/zhkathauthor.py:66
 msgid "show_tagged_news_and_blogposts"
-msgstr ""
+msgstr "Zeige News und Blog-Posts nach Schlagwörtern"
