@@ -17,11 +17,30 @@
 <metal:cc define-macro="content-core"
     tal:define="toc context/table_of_contents|nothing;
               portal_url context/@@plone_portal_state/portal_url;
-              here_url context/@@plone_context_state/object_url;">
+              here_url context/@@plone_context_state/object_url;
+              competence context/competence|nothing;
+              organisation context/organisation|nothing;
+              region context/region|nothing;
+              ">
 
-    <div class="companyposition discreet small">
+    <p class="companyposition discreet small">
         <span tal:replace="context/companyposition|nothing" />
-    </div>
+    </p>
+    <ul 
+        class="expertsearch discreet small"
+        tal:condition="python:competence or organisation or region"
+        style="list-style: none; padding-left: 0;"
+    >
+        <li tal:condition="competence">
+            <span tal:content="competence" />
+        </li>
+        <li tal:condition="organisation">
+            <span tal:content="organisation" />
+        </li>
+        <li tal:condition="region">
+            <span tal:content="region" />
+        </li>
+    </ul>
     <div class="contactdata"
         tal:define="
         telnr context/telnr|nothing;
