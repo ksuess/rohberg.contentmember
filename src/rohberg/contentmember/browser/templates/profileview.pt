@@ -55,36 +55,48 @@
         emaildomainpart python:mail[1];
         show_email context/show_email|nothing;
         ">
-        <ul>
-            <li tal:condition="telnr">
-                <span class="label telnr" tal:content="python:telnr_label or 'Telefon'">Telefon</span> <span tal:content="telnr"></span>
-            </li>
-            <li tal:condition="telnr2"><span class="label telnr" tal:content="python:telnr2_label or 'Telefon'">Telefon</span> <span tal:content="telnr2"></span>
-            </li>
-            <li tal:condition="python:show_email and item_email">
-                <span class="label email">Email</span> <a href="#" class="nohyphens"
-                            tal:attributes="href emaillocalpart;
-                                data-emaildomainpart emaildomainpart"
-                            tal:content="emaillocalpart">
-                           Item Title
-                         </a><a href="#" class="nohyphens"
-                              tal:attributes="href emaillocalpart;
-                                  data-emaildomainpart emaildomainpart"
-                              tal:content="string:@$emaildomainpart">
-                             Item Title
-                         </a>
-            </li>
-            <li tal:condition="website">
-                <span class="label website">Website</span> <a
-                        tal:attributes="href website"
-                        tal:content="python:website.replace('https://','')"></a>
-            </li>
-            <li tal:condition="twitter">
-                <span class="label twitter">Twitter</span> <a
-                        tal:attributes="href twitter"
-                        tal:content="python:twitter.replace('https://','')"></a>
-            </li>
-        </ul>
+        <div class="contactdatainner">
+            <div class="tel" tal:condition="telnr">
+                <div class="label telnr" tal:content="python:telnr_label or 'Telefon'">Telefon</div>
+                <div class="contactdatavalue" tal:content="telnr">Tel</div>
+            </div>
+            <div class="tel" tal:condition="telnr2">
+                <div class="label" tal:content="python:telnr2_label or 'Telefon'">Telefon</div>
+                <div class="contactdatavalue" tal:content="telnr2"></div>
+            </div>
+            <div class="email" tal:condition="python:show_email and item_email">
+                <div class="label">E-Mail</div>
+                <div class="contactdatavalue">
+                    <a href="#" class="nohyphens"
+                                tal:attributes="href emaillocalpart;
+                                    data-emaildomainpart emaildomainpart"
+                                tal:content="emaillocalpart">
+                               Item Title
+                             </a><a href="#" class="nohyphens"
+                                  tal:attributes="href emaillocalpart;
+                                      data-emaildomainpart emaildomainpart"
+                                  tal:content="string:@$emaildomainpart">
+                                 Item Title
+                             </a>
+                </div>
+            </div>
+            <div class="website" tal:condition="website">
+                <div class="label">Website</div>
+                <div class="contactdatavalue">
+                    <a
+                            tal:attributes="href website"
+                            tal:content="python:website.replace('https://','')">Website</a>
+                </div>
+            </div>
+            <div class="twitter" tal:condition="twitter">
+                <div class="label">Twitter</div>
+                <div class="contactdatavalue">
+                    <a
+                            tal:attributes="href twitter"
+                            tal:content="structure python:twitter.replace('https://','')">Website</a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="bio"
