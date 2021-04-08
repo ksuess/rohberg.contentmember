@@ -49,7 +49,8 @@
         telnr2_label context/telnr2_label|nothing;
         website context/website|nothing;
         twitter context/twitter_url|nothing;
-        item_email context/email|nothing;
+        item_email python:getattr(context, 'alternativeEmail', '');
+        item_email python:(item_email and len(item_email)>0) and item_email or getattr(context, 'email', '');
         mail python:item_email.split('@');
         emaillocalpart python:mail[0];
         emaildomainpart python:mail[1];

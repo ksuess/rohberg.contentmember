@@ -50,6 +50,11 @@ class IZhkathauthor(IMember):
         required=False
     )
 
+    alternativeEmail = schema.TextLine(
+        title=_(u'label_alternativeEmail', default=u'alternative E-Mail'),
+        required=False
+    )
+
     widget(authortype='z3c.form.browser.checkbox.CheckBoxFieldWidget')
     authortype = schema.Set(
         title=_(u"label_authortype", default=u"Typ"),
