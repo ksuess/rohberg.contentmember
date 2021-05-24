@@ -59,7 +59,8 @@ class IZhkathauthor(IMember):
     authortype = schema.Set(
         title=_(u"label_authortype", default=u"Typ"),
         value_type=schema.Choice(values=['Autor', 'Kontakt']),
-        required=True,
+        # required=True,
+        required=False,
         )
 
     show_email = schema.Bool(
@@ -78,6 +79,7 @@ class IZhkathauthor(IMember):
 #                                required=False,
 #                                value_type=zope.schema.Choice(source=yourVocabularyFunction),
 #                                )
+
 
 IZhkathauthor['homepage'].title = u"homepage"
 
