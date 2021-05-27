@@ -29,4 +29,12 @@
       class=".views.ProfileView"
       />
 
+  <browser:page
+      name="createmembraneusers"
+      for="plone.dexterity.interfaces.IDexterityContainer"
+      layer="rohberg.contentmember.interfaces.IRohbergContentmemberLayer"
+      permission="cmf.ManagePortal"
+      class=".views.MembraneUserCreationView"
+      />
+
 </configure>

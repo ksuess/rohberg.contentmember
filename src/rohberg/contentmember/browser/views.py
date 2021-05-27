@@ -3,6 +3,18 @@ from plone import api
 from plone.dexterity.browser.view import DefaultView
 from plone.memoize.view import memoize, memoize_contextless
 from Products.Five import BrowserView
+from zope.interface import alsoProvides
+
+import logging
+logger = logging.getLogger(__name__)
+import pprint
+
+try:
+    from plone.protect.interfaces import IDisableCSRFProtection
+    HAS_PLONE_PROTECT = True
+except ImportError:
+    HAS_PLONE_PROTECT = False
+
 
 # @memoize_contextless
 def getAuthors(brain):
@@ -20,7 +32,8 @@ def getAuthors(brain):
     membrane_tool = api.portal.get_tool("membrane_tool")
     membraneusers = [membrane_tool.getUserObject(user_id=crt) for crt in creators]
     return membraneusers
-    
+
+
 class ProfileView(DefaultView):
     """
     """
@@ -105,3 +118,55 @@ class ProfileView(DefaultView):
         for subject in subjects:
             result += '&Subject=' + subject
         return result
+
+
+class MembraneUserCreationView(BrowserView):
+    """Show some data for debugging.
+
+    Call with <path to folder>/createmembraneusers
+    """
+
+    def foo(self):
+        """Foo."""
+        return 'foo'
+
+    def __call__(self):
+        """Call TestView."""
+        alsoProvides(self.request, IDisableCSRFProtection)
+        context = self.context
+        portal = api.portal.get()
+        catalog = api.portal.get_tool('portal_catalog')
+
+        logger.info("*** MembraneUserCreationView")
+        
+        # ~/Google Drive/Code/Snippets_Python/filesystem/read_membrane_data_csv 
+        import csv
+        from DateTime import DateTime
+        now = DateTime()
+
+        filename = '/Users/katjasuss/Google Drive/Code/Snippets_Python/filesystem/read_membrane_data_csv/membrane_data.csv'
+        delimiter = ';'
+        portal_type = 'zhkathauthor'
+
+        with open(filename, newline='') as csvfile:
+            myreader = csv.reader(csvfile, delimiter=delimiter, quotechar='|')
+            for row in myreader:
+                options = {
+                    # 'description': len(row) > 5 and row[5] or ''
+                    'email': row[2],
+                    'first_name': row[0],
+                    'last_name': row[1],
+                    'companyposition': len(row) > 4 and row[4] or ''
+                    # TODO subjects
+                }
+                obj = api.content.create(
+                    type=portal_type,
+                    container=context,
+                    id=now.strftime("membraneuser_%Y%m%d_%H%M"),
+                    safe_id=True,
+                    **options)
+                print('object created: ', obj)
+                print(', '.join(row))
+
+        print(f"MembraneUserCreationView done. {now}")
+        return f"MembraneUserCreationView done. {now}"
