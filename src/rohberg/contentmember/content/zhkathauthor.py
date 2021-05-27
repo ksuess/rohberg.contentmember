@@ -94,3 +94,8 @@ class Zhkathauthor(Item):
     @property
     def title(self):
         return INameFromFullName(self).title
+
+    @title.setter
+    def title(self, value):
+        # self.context.title = value
+        pass
