@@ -12,4 +12,8 @@
   </index>
   <!-- no metadata -->
 
+ <index name="email" meta_type="FieldIndex">
+    <indexed_attr value="email"/>
+ </index>
+
 </object>

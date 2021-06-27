@@ -12,5 +12,14 @@
     handler=".upgrades.indexAuthors"
     />
 
+  <genericsetup:upgradeStep
+    source="1001"
+    destination="1002"
+    title="Index Email"
+    description=""
+    profile="rohberg.contentmember:default"
+    handler=".upgrades.indexEmail"
+    />
+
 
 </configure>
