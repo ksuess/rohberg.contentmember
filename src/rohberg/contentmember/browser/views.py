@@ -121,9 +121,12 @@ class ProfileView(DefaultView):
 
 
 class MembraneUserCreationView(BrowserView):
-    """Show some data for debugging.
+    """Create users from csv file
 
     Call with <path to folder>/createmembraneusers
+
+    fields: 
+    TODO
     """
 
     def foo(self):
