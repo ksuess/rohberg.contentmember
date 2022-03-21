@@ -76,7 +76,7 @@
                              </a><a href="#" class="nohyphens"
                                   tal:attributes="href emaillocalpart;
                                       data-emaildomainpart emaildomainpart"
-                                  tal:content="string:@$emaildomainpart">
+                                  tal:content="python:f'@{emaildomainpart}'">
                                  Item Title
                              </a>
                 </div>
