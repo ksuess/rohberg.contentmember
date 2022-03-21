@@ -1,7 +1,7 @@
 # coding: utf-8
 from collective import dexteritytextindexer
 from dexterity.membrane.behavior.user import INameFromFullName
-from dexterity.membrane.content.member import IMember
+from dexterity.membrane.content.member import IMember, is_email
 from plone.autoform.directives import widget
 from plone.dexterity.content import Item
 # from plone.supermodel import model
@@ -28,7 +28,9 @@ class IZhkathauthor(IMember):
     )
     companyposition = schema.TextLine(
         title=_(u'label_companyposition', default=u'Position'),
-        description=_(u'help_companyposition', default=u'Funktion innerhalb seiner oder ihrer Organisation / Firma'),
+        description=_(
+            u'help_companyposition',
+            default=u'Funktion in seiner oder ihrer Organisation / Firma'),
         required=False
     )
 
@@ -52,7 +54,8 @@ class IZhkathauthor(IMember):
 
     alternativeEmail = schema.TextLine(
         title=_(u'label_alternativeEmail', default=u'alternative E-Mail'),
-        required=False
+        required=False,
+        constraint=is_email,
     )
 
     widget(authortype='z3c.form.browser.checkbox.CheckBoxFieldWidget')
@@ -69,16 +72,12 @@ class IZhkathauthor(IMember):
     )
 
     show_tagged_news_and_blogposts = schema.List(
-        title=_(u"show_tagged_news_and_blogposts", default=u"Zeige News und Blog-Posts nach Schlagwörtern"),
+        title=_(
+            u"show_tagged_news_and_blogposts",
+            default=u"Zeige News und Blog-Posts nach Schlagwörtern"),
         value_type=schema.Choice(source=u"plone.app.vocabularies.Keywords"),
         required=False,
     )
-
-# yourField = schema.List(title=u"Available headers and animations",
-#                                description=u"Headers and animations uploaded here",
-#                                required=False,
-#                                value_type=zope.schema.Choice(source=yourVocabularyFunction),
-#                                )
 
 
 IZhkathauthor['homepage'].title = u"homepage"
