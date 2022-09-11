@@ -31,13 +31,13 @@
         tal:condition="python:competence or organisation or region"
         style="list-style: none; padding-left: 0;"
     >
-        <li tal:condition="competence">
+        <li class="competence" tal:condition="competence">
             <span tal:content="competence" />
         </li>
-        <li tal:condition="organisation">
+        <li class="organisation" tal:condition="organisation">
             <span tal:content="organisation" />
         </li>
-        <li tal:condition="region">
+        <li class="region" tal:condition="region">
             <span tal:content="region" />
         </li>
     </ul>
