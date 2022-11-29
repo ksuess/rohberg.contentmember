@@ -1,7 +1,10 @@
 Changelog
 =========
 
-- collective.dexteritytextindexer is integrated in Plone 6. Use plone.app.dexterity instead.
+
+1.0.0
+------------------
+
 - Index email
 
 
