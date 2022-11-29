@@ -1,5 +1,5 @@
 # collective.dexteritytextindexer is integrated in Plon 6. Use plone.app.dexterity instead.
-from plone.app.dexterity.textindexer.directives import searchable
+from plone.app.dexterity import textindexer
 from dexterity.membrane.behavior.user import INameFromFullName
 from dexterity.membrane.content.member import IMember, is_email
 from plone.autoform.directives import widget
@@ -17,10 +17,10 @@ class IZhkathauthor(IMember):
     """Marker interface for Zhkathauthor."""
 
     # TODO: make membrane fields searchable
-    searchable("first_name")
-    searchable("last_name")
-    searchable("companyposition")
-    searchable("bio")
+    textindexer.searchable("first_name")
+    textindexer.searchable("last_name")
+    textindexer.searchable("companyposition")
+    textindexer.searchable("bio")
 
     website = URI_noprotocol(
         title=_("Website"),

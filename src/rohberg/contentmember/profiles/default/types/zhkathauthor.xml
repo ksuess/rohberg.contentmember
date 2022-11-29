@@ -50,6 +50,7 @@
       <element value="dexterity.membrane.behavior.user.INameFromFullName" />
       <element value="dexterity.membrane.behavior.password.IProvidePasswords" />
       <!-- OBSOLETE with integration of collective.dexteritytextindexer into plone.app.dexterity <element value="collective.dexteritytextindexer.behavior.IDexterityTextIndexer" /> -->
+      <element value="plone.textindexer" />
       <element value="plone.app.relationfield.behavior.IRelatedItems"/>
       <!-- <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" /> -->
       <element value="plone.app.contenttypes.behaviors.leadimage.ILeadImage"/>
