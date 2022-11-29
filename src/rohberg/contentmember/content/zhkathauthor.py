@@ -1,9 +1,10 @@
-# coding: utf-8
-from collective import dexteritytextindexer
+# collective.dexteritytextindexer is integrated in Plon 6. Use plone.app.dexterity instead.
+from plone.app.dexterity.textindexer.directives import searchable
 from dexterity.membrane.behavior.user import INameFromFullName
 from dexterity.membrane.content.member import IMember, is_email
 from plone.autoform.directives import widget
 from plone.dexterity.content import Item
+
 # from plone.supermodel import model
 from rohberg.contentmember.fields import URI_noprotocol
 from zope import schema
@@ -16,77 +17,72 @@ class IZhkathauthor(IMember):
     """Marker interface for Zhkathauthor."""
 
     # TODO: make membrane fields searchable
-    dexteritytextindexer.searchable('first_name')
-    dexteritytextindexer.searchable('last_name')
-    dexteritytextindexer.searchable('companyposition')
-    dexteritytextindexer.searchable('bio')
+    searchable("first_name")
+    searchable("last_name")
+    searchable("companyposition")
+    searchable("bio")
 
     website = URI_noprotocol(
-        title=_(u"Website"),
-        description=_(u"e.g. www.abcjazzz.com"),
+        title=_("Website"),
+        description=_("e.g. www.abcjazzz.com"),
         required=False,
     )
     companyposition = schema.TextLine(
-        title=_(u'label_companyposition', default=u'Position'),
+        title=_("label_companyposition", default="Position"),
         description=_(
-            u'help_companyposition',
-            default=u'Funktion in seiner oder ihrer Organisation / Firma'),
-        required=False
+            "help_companyposition",
+            default="Funktion in seiner oder ihrer Organisation / Firma",
+        ),
+        required=False,
     )
 
-    telnr = schema.TextLine(
-        title=_(u'label_telnr', default=u'Telefon'),
-        required=False
-    )
+    telnr = schema.TextLine(title=_("label_telnr", default="Telefon"), required=False)
     telnr_label = schema.TextLine(
-        title=_(u'label_telnr_label', default=u'Label Telefon'),
-        required=False
+        title=_("label_telnr_label", default="Label Telefon"), required=False
     )
 
     telnr2 = schema.TextLine(
-        title=_(u'label_telnr2', default=u'Telefon #2'),
-        required=False
+        title=_("label_telnr2", default="Telefon #2"), required=False
     )
     telnr2_label = schema.TextLine(
-        title=_(u'label_telnr2_label', default=u'Label Telefon #2'),
-        required=False
+        title=_("label_telnr2_label", default="Label Telefon #2"), required=False
     )
 
     alternativeEmail = schema.TextLine(
-        title=_(u'label_alternativeEmail', default=u'alternative E-Mail'),
+        title=_("label_alternativeEmail", default="alternative E-Mail"),
         required=False,
         constraint=is_email,
     )
 
-    widget(authortype='z3c.form.browser.checkbox.CheckBoxFieldWidget')
+    widget(authortype="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     authortype = schema.Set(
-        title=_(u"label_authortype", default=u"Typ"),
-        value_type=schema.Choice(values=['Autor', 'Kontakt']),
+        title=_("label_authortype", default="Typ"),
+        value_type=schema.Choice(values=["Autor", "Kontakt"]),
         # required=True,
         required=False,
-        )
+    )
 
     show_email = schema.Bool(
-        title=_(u"show_email", default=u"Zeige Email in Kontaktkarte"),
-        default=True
+        title=_("show_email", default="Zeige Email in Kontaktkarte"), default=True
     )
 
     show_tagged_news_and_blogposts = schema.List(
         title=_(
-            u"show_tagged_news_and_blogposts",
-            default=u"Zeige News und Blog-Posts nach Schlagwörtern"),
-        value_type=schema.Choice(source=u"plone.app.vocabularies.Keywords"),
+            "show_tagged_news_and_blogposts",
+            default="Zeige News und Blog-Posts nach Schlagwörtern",
+        ),
+        value_type=schema.Choice(source="plone.app.vocabularies.Keywords"),
         required=False,
     )
 
 
-IZhkathauthor['homepage'].title = u"homepage"
+IZhkathauthor["homepage"].title = "homepage"
 
 
 @implementer(IZhkathauthor)
 class Zhkathauthor(Item):
-    """
-    """
+    """ """
+
     def Title(self):
         return INameFromFullName(self).title
 
