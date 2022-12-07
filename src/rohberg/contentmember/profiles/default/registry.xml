@@ -15,5 +15,16 @@
         <value key="vocabulary">plone.app.vocabularies.Authortype</value>
         <value key="group" i18n:translate="">Metadata</value>
     </records>
+    
+    <records interface="plone.app.querystring.interfaces.IQueryField"
+        prefix="plone.app.querystring.field.last_name">
+        <value key="title">Last Name</value>
+        <value key="enabled">True</value>
+        <value key="sortable">True</value>
+        <value key="operations">
+            <element>plone.app.querystring.operation.string.contains</element>
+        </value>
+        <value key="group" i18n:translate="">Text</value>
+    </records>
 
 </registry>

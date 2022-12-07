@@ -3,6 +3,7 @@
   xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
 
   <!-- -*- extra stuff goes here -*- -->
+
   <genericsetup:upgradeStep
     source="*"
     destination="1001"
@@ -18,7 +19,16 @@
     title="Index Email"
     description=""
     profile="rohberg.contentmember:default"
-    handler=".upgrades.indexEmail"
+    handler=".upgrades.updateCatalog"
+    />
+
+  <genericsetup:upgradeStep
+    source="1002"
+    destination="1003"
+    title="Add last_name to catalog metadata"
+    description=""
+    profile="rohberg.contentmember:default"
+    handler=".upgrades.index_last_name"
     />
 
 
