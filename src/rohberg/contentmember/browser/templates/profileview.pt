@@ -20,8 +20,8 @@
               here_url context/@@plone_context_state/object_url;
               companyposition context/companyposition|nothing;
               competence context/competence|nothing;
-              organisation context/organisation|nothing;
-              region context/region|nothing;
+              organisation view/location_title;
+              region view/location_region;
               ">
 
     <p class="competence discreet small" tal:condition="competence">
