@@ -16,4 +16,7 @@
     <indexed_attr value="email"/>
  </index>
 
+
+  <column value="last_name"/>
+
 </object>
