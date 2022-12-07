@@ -1,9 +1,11 @@
 # coding: utf-8
 from plone import api
 from plone.dexterity.browser.view import DefaultView
-from plone.memoize.view import memoize, memoize_contextless
+from plone.memoize.view import memoize
 from Products.Five import BrowserView
+from zope.component import getUtility
 from zope.interface import alsoProvides
+from zope.schema.interfaces import IVocabularyFactory
 
 import logging
 
@@ -38,6 +40,10 @@ def getAuthors(brain):
 
 class ProfileView(DefaultView):
     """ """
+
+    def __init__(self, context, request):
+        super(ProfileView, self).__init__(context, request)
+        self.location = getattr(self.context, "experts_location", None)
 
     @memoize
     def author_content(self):
@@ -123,6 +129,30 @@ class ProfileView(DefaultView):
         for subject in subjects:
             result += "&Subject=" + subject
         return result
+
+    # @property
+    def location_title(self):
+        if self.location:
+            if self.location.to_object:
+                return self.location.to_object.title
+        else:
+            return getattr(self.context, "organisation", None)
+
+    # @property
+    def location_region(self):
+        if self.location:
+            if self.location.to_object:
+                region = self.location.to_object.region
+                if region:
+                    # Translate region
+                    factory = getUtility(
+                        IVocabularyFactory, "rohberg.locationfinder.Regions"
+                    )
+                    vocabulary = factory(self.context)
+                    term = vocabulary.getTerm(region)
+                    return term.title
+        else:
+            return getattr(self.context, "region", None)
 
 
 class MembraneUserCreationView(BrowserView):
