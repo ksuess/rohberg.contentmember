@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from collective import dexteritytextindexer
-
 try:
     from plone.app.dexterity import textindexer
 except ImportError:
