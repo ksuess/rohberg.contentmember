@@ -1,5 +1,8 @@
 # collective.dexteritytextindexer is integrated in Plon 6. Use plone.app.dexterity instead.
-from plone.app.dexterity import textindexer
+try:
+    from plone.app.dexterity import textindexer
+except ImportError:
+    from collective import dexteritytextindexer as textindexer
 from dexterity.membrane.behavior.user import INameFromFullName
 from dexterity.membrane.content.member import IMember, is_email
 from plone.autoform.directives import widget

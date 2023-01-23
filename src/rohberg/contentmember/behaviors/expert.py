@@ -1,14 +1,20 @@
 # -*- coding: utf-8 -*-
 
-from rohberg.contentmember import _
+from collective import dexteritytextindexer
+
+try:
+    from plone.app.dexterity import textindexer
+except ImportError:
+    from collective import dexteritytextindexer as textindexer
 from plone import schema
+from plone.autoform.directives import order_after, widget
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
 from Products.CMFPlone.utils import safe_hasattr
+from rohberg.contentmember import _
+from z3c.form.browser.radio import RadioFieldWidget
 from zope.component import adapter
-from zope.interface import Interface
-from zope.interface import implementer
-from zope.interface import provider
+from zope.interface import implementer, Interface, provider
 
 
 class IExpertMarker(Interface):
@@ -17,14 +23,19 @@ class IExpertMarker(Interface):
 
 @provider(IFormFieldProvider)
 class IExpert(model.Schema):
-    """
-    """
+    """ """
 
-    project = schema.TextLine(
-        title=_(u'Project'),
-        description=_(u'Give in a project name'),
+    # textindexer.searchable('region') # extra index for filtering by region
+    textindexer.searchable("organisation")
+
+    region = schema.TextLine(title=_("Region"), required=False)
+    organisation = schema.TextLine(
+        title=_("Organisation"),
         required=False,
     )
+
+    order_after(organisation="last_name")
+    order_after(region="last_name")
 
 
 @implementer(IExpert)
@@ -34,11 +45,21 @@ class Expert(object):
         self.context = context
 
     @property
-    def project(self):
-        if safe_hasattr(self.context, 'project'):
-            return self.context.project
+    def region(self):
+        if safe_hasattr(self.context, "region"):
+            return self.context.region
         return None
 
-    @project.setter
-    def project(self, value):
-        self.context.project = value
+    @region.setter
+    def region(self, value):
+        self.context.region = value
+
+    @property
+    def organisation(self):
+        if safe_hasattr(self.context, "organisation"):
+            return self.context.organisation
+        return None
+
+    @organisation.setter
+    def organisation(self, value):
+        self.context.organisation = value

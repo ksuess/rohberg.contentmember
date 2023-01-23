@@ -12,7 +12,7 @@
     <plone:behavior
         name="rohberg.contentmember.expert"
         title="Expert"
-        description="Add fields organisation, region"
+        description="rohberg.contentmember: Add fields: organisation, region"
         provides=".expert.IExpert"
         factory=".expert.Expert"
         marker=".expert.IExpertMarker"
