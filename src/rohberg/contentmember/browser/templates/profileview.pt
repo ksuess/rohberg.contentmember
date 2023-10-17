@@ -29,7 +29,7 @@
     </p>
     <ul 
         class="expertsearch discreet small"
-        tal:condition="python:competence or organisation or region"
+        tal:condition="python:companyposition or organisation or region"
         style="list-style: none; padding-left: 0;"
     >
         <li class="companyposition" tal:condition="companyposition">
