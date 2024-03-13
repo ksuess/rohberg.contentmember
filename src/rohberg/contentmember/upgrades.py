@@ -54,12 +54,9 @@ def index_last_name(context, logger=None):
     setup.runImportStepFromProfile(PROFILE_ID, "plone.app.registry")
 
 
-def install_dependencies(context, logger=None):
+def dummy(context, logger=None):
     if logger is None:
         # Called as upgrade step: define our own logger.
         logger = logging.getLogger("rohberg.contentmember")
 
-    setup = api.portal.get_tool("portal_setup")
-    setup.runImportStepFromProfile(PROFILE_ID, "plone.app.registry")
-
-    logger.info("tinymce registry settings updated.")
+    logger.info("dummy upgrade step")

@@ -34,10 +34,10 @@
   <genericsetup:upgradeStep
     source="1003"
     destination="1004"
-    title="Update registry (TinyMCE)"
-    description="Please install dexterity.membrane and Products.membrane"
+    title="Version bump"
+    description=""
     profile="rohberg.contentmember:default"
-    handler=".upgrades.install_dependencies"
+    handler=".upgrades.dummy"
     />
 
 </configure>
