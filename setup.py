@@ -16,7 +16,7 @@ long_description = "\n\n".join(
 
 setup(
     name="rohberg.contentmember",
-    version="1.0a2",
+    version="1.1",
     description="member is a content item to search for, with views, etc",
     long_description=long_description,
     # Get more from https://pypi.python.org/pypi?%3Aaction=list_classifiers
@@ -47,8 +47,7 @@ setup(
         "Products.GenericSetup>=1.8.2",
         "setuptools",
         "z3c.jbot",
-        "dexterity.membrane>=3.0.0a1",
-        "Products.membrane>=5.0.0a1",
+        "dexterity.membrane>=3.0.2",
         "collective.address",
     ],
     extras_require={
