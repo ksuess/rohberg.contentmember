@@ -10,3 +10,11 @@ class AuthortypeVocabulary(KeywordsVocabulary):
 
 
 AuthortypeVocabularyFactory = AuthortypeVocabulary()
+
+
+@implementer(IVocabularyFactory)
+class TeamcategoryVocabulary(KeywordsVocabulary):
+    keyword_index = 'teamcategory'
+
+
+TeamcategoryVocabularyFactory = TeamcategoryVocabulary()

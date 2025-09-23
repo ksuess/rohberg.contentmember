@@ -18,5 +18,14 @@
         marker=".expert.IExpertMarker"
         />
 
+    <plone:behavior
+        name="rohberg.contentmember.teamcategory"
+        title="Team Category"
+        description="rohberg.contentmember: Add field: teamcategory"
+        provides=".teamcategory.ITeamcategory"
+        factory=".teamcategory.Teamcategory"
+        marker=".teamcategory.ITeamcategoryMarker"
+        />
+
 
 </configure>

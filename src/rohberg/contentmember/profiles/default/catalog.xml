@@ -12,10 +12,14 @@
   </index>
   <!-- no metadata -->
 
- <index name="email" meta_type="FieldIndex">
+  <index name="email" meta_type="FieldIndex">
     <indexed_attr value="email"/>
- </index>
+  </index>
 
+  <index name="teamcategory" meta_type="KeywordIndex">
+    <indexed_attr value="teamcategory"/>
+  </index>
+  <column value="teamcategory"/>
 
   <column value="last_name"/>
 

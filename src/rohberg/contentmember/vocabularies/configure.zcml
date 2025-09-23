@@ -7,4 +7,9 @@
     name="plone.app.vocabularies.Authortype"
     />
 
+  <utility
+    component=".vocabularies.TeamcategoryVocabularyFactory"
+    name="rohberg.contentmember.teamcategory"
+    />
+
 </configure>
