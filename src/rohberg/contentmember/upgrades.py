@@ -38,7 +38,7 @@ def index_last_name(context):
     context.runImportStepFromProfile(PROFILE_ID, "plone.app.registry")
 
 
-def dummy(context, logger=None):
+def dummy(context):
     logger.info("dummy upgrade step")
 
 
